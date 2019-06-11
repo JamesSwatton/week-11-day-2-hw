@@ -30,20 +30,20 @@ public class Library {
     }
 
 
-    public int numOfBooksByGenre(String genre) {
-        String genreToSearch = genre;
-        HashMap<String, Integer> numOfBooksByGenre;
-        numOfBooksByGenre = new HashMap<String, Integer>();
+    public HashMap numOfBooksByGenre() {
+
+        HashMap<String, Integer> numOfBooksByGenre = new HashMap<String, Integer>();
 
         for (Book book : this.books){
-            if (numOfBooksByGenre.containsKey(genreToSearch)) {
-                int runningTotal = numOfBooksByGenre.get(genreToSearch);
-                numOfBooksByGenre.replace(genreToSearch, runningTotal+1 );
+            String genre = book.getGenre();
+
+            if (numOfBooksByGenre.containsKey(genre)) {
+                int runningTotal = numOfBooksByGenre.get(genre);
+                numOfBooksByGenre.put(genre, runningTotal+1);
             } else {
                 numOfBooksByGenre.put(book.getGenre(), 1);
             }
         }
-
-        return numOfBooksByGenre.get(genreToSearch);
+        return numOfBooksByGenre;
     }
 }
